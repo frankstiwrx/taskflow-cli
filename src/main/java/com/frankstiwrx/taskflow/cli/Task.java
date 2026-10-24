@@ -1,4 +1,8 @@
+
+package com.frankstiwrx.taskflow.cli;
+
 public class Task {
+
     private final int id;
     private final String description;
     private boolean completed;
@@ -22,7 +26,7 @@ public class Task {
     }
 
     public void complete() {
-        completed = true;
+        this.completed = true;
     }
 
     @Override

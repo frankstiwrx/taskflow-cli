@@ -1,7 +1,11 @@
+
+package com.frankstiwrx.taskflow.cli;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class TaskManager {
+
     private final List<Task> tasks = new ArrayList<>();
     private int nextId = 1;
 
@@ -16,7 +20,9 @@ public class TaskManager {
             return;
         }
 
-        tasks.forEach(System.out::println);
+        for (Task task : tasks) {
+            System.out.println(task);
+        }
     }
 
     public void completeTask(int id) {
@@ -32,9 +38,14 @@ public class TaskManager {
     }
 
     public void removeTask(int id) {
-        boolean removed = tasks.removeIf(task -> task.getId() == id);
-        System.out.println(removed
-                ? "Tarefa removida!"
-                : "Tarefa nao encontrada.");
+        boolean removed = tasks.removeIf(
+                task -> task.getId() == id
+        );
+
+        if (removed) {
+            System.out.println("Tarefa removida!");
+        } else {
+            System.out.println("Tarefa nao encontrada.");
+        }
     }
 }
