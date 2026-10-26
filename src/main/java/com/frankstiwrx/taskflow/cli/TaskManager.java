@@ -57,4 +57,25 @@ public class TaskManager {
             System.out.println("Tarefa nao encontrada.");
         }
     }
+
+    public void filterTasks(String status) {
+        boolean found = false;
+
+        for (Task task : tasks) {
+            if (status.equalsIgnoreCase("ALL")
+                    || (status.equalsIgnoreCase("PENDING")
+                    && !task.isCompleted())
+                    || (status.equalsIgnoreCase("COMPLETED")
+                    && task.isCompleted())) {
+
+                System.out.println(task);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No tasks found for this filter.");
+        }
+    }
+
 }

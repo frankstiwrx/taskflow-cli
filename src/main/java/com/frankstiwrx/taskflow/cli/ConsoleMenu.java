@@ -16,6 +16,7 @@ public class ConsoleMenu {
             System.out.println("2. Listar tarefas");
             System.out.println("3. Concluir tarefa");
             System.out.println("4. Remover tarefa");
+            System.out.println("5. Filtrar tasks por status");
             System.out.println("0. Sair");
             System.out.print("Escolha: ");
 
@@ -35,8 +36,8 @@ public class ConsoleMenu {
 
                         System.out.println("Priority: 1-LOW | 2-MEDIUM | 3-HIGH");
                         System.out.print("Choose priority: ");
-                        String priorityOption = scanner.nextLine();
 
+                        String priorityOption = scanner.nextLine();
                         TaskPriority priority;
 
                         switch (priorityOption) {
@@ -51,10 +52,10 @@ public class ConsoleMenu {
                                 break;
                             default:
                                 System.out.println("Invalid priority.");
-                                break;
+                                continue;
                         }
 
-                        // Cadastro integrado abaixo
+                        manager.addTask(description, priority);
                         break;
 
                     case "2":
@@ -75,6 +76,29 @@ public class ConsoleMenu {
                                 scanner.nextLine()
                         );
                         manager.removeTask(removeId);
+                        break;
+
+                    case "5":
+                        System.out.println("1. All tasks");
+                        System.out.println("2. Pending tasks");
+                        System.out.println("3. Completed tasks");
+                        System.out.print("Choose filter: ");
+
+                        String filterOption = scanner.nextLine();
+
+                        switch (filterOption) {
+                            case "1":
+                                manager.filterTasks("ALL");
+                                break;
+                            case "2":
+                                manager.filterTasks("PENDING");
+                                break;
+                            case "3":
+                                manager.filterTasks("COMPLETED");
+                                break;
+                            default:
+                                System.out.println("Invalid filter.");
+                        }
                         break;
 
                     case "0":
