@@ -1,4 +1,3 @@
-
 package com.frankstiwrx.taskflow.cli;
 
 import java.util.ArrayList;
@@ -10,8 +9,13 @@ public class TaskManager {
     private int nextId = 1;
 
     public void addTask(String description) {
-        tasks.add(new Task(nextId++, description));
-        System.out.println("Tarefa adicionada com sucesso!");
+        if (description == null || description.isBlank()) {
+            System.out.println("Error: Task description is required.");
+            return;
+        }
+
+        tasks.add(new Task(nextId++, description.trim()));
+        System.out.println("Task added successfully!");
     }
 
     public void listTasks() {
