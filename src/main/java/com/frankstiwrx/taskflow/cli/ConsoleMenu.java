@@ -1,4 +1,3 @@
-
 package com.frankstiwrx.taskflow.cli;
 
 import java.util.Scanner;
@@ -24,17 +23,38 @@ public class ConsoleMenu {
 
             try {
                 switch (option) {
+
                     case "1":
-                        System.out.print("Descricao: ");
+                        System.out.print("Description: ");
                         String description = scanner.nextLine().trim();
 
                         if (description.isEmpty()) {
-                            System.out.println(
-                                    "A descricao nao pode ficar vazia."
-                            );
-                        } else {
-                            manager.addTask(description);
+                            System.out.println("Error: Description is required.");
+                            break;
                         }
+
+                        System.out.println("Priority: 1-LOW | 2-MEDIUM | 3-HIGH");
+                        System.out.print("Choose priority: ");
+                        String priorityOption = scanner.nextLine();
+
+                        TaskPriority priority;
+
+                        switch (priorityOption) {
+                            case "1":
+                                priority = TaskPriority.LOW;
+                                break;
+                            case "2":
+                                priority = TaskPriority.MEDIUM;
+                                break;
+                            case "3":
+                                priority = TaskPriority.HIGH;
+                                break;
+                            default:
+                                System.out.println("Invalid priority.");
+                                break;
+                        }
+
+                        // Cadastro integrado abaixo
                         break;
 
                     case "2":

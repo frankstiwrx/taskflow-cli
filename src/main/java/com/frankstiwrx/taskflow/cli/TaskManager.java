@@ -8,13 +8,18 @@ public class TaskManager {
     private final List<Task> tasks = new ArrayList<>();
     private int nextId = 1;
 
-    public void addTask(String description) {
+    public void addTask(String description, TaskPriority priority) {
         if (description == null || description.isBlank()) {
             System.out.println("Error: Task description is required.");
             return;
         }
 
-        tasks.add(new Task(nextId++, description.trim()));
+        if (priority == null) {
+            System.out.println("Error: Task priority is required.");
+            return;
+        }
+
+        tasks.add(new Task(nextId++, description.trim(), priority));
         System.out.println("Task added successfully!");
     }
 

@@ -5,11 +5,13 @@ public class Task {
 
     private final int id;
     private final String description;
+    private final TaskPriority priority;
     private boolean completed;
 
-    public Task(int id, String description) {
+    public Task(int id, String description, TaskPriority priority) {
         this.id = id;
         this.description = description;
+        this.priority = priority;
         this.completed = false;
     }
 
@@ -19,6 +21,10 @@ public class Task {
 
     public String getDescription() {
         return description;
+    }
+
+    public TaskPriority getPriority() {
+        return priority;
     }
 
     public boolean isCompleted() {
@@ -32,6 +38,8 @@ public class Task {
     @Override
     public String toString() {
         String status = completed ? "[X]" : "[ ]";
-        return status + " " + id + " - " + description;
+
+        return status + " " + id + " - " + description
+                + " | Priority: " + priority;
     }
 }
